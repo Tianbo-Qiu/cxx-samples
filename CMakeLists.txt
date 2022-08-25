@@ -26,6 +26,11 @@ add_subdirectory(lt1512)
 list(APPEND EXTRA_LIBS nogp)
 list(APPEND EXTRA_INCLUDES "${PROJECT_SOURCE_DIR}/lt1512")
 
+# my vec
+add_subdirectory(vec)
+list(APPEND EXTRA_LIBS vec)
+list(APPEND EXTRA_INCLUDES "${PROJECT_SOURCE_DIR}/vec")
+
 # Testing
 enable_testing()
 include(GoogleTest)
@@ -42,4 +47,8 @@ target_link_libraries(nogp_test GTest::gtest_main ${EXTRA_LIBS})
 target_include_directories(nogp_test PUBLIC ${EXTRA_INCLUDES})
 gtest_discover_tests(nogp_test)
 
-
+# vec test
+add_executable(vec_test "${PROJECT_SOURCE_DIR}/test/vec_test.cpp")
+target_link_libraries(vec_test GTest::gtest_main ${EXTRA_LIBS})
+target_include_directories(vec_test PUBLIC ${EXTRA_INCLUDES})
+gtest_discover_tests(vec_test)
